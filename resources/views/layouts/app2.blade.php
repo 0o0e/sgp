@@ -38,17 +38,13 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            margin: 0 !important;
-            padding: 0 !important;
-            width: 100% !important;
-            max-width: 100% !important;
-            overflow-x: hidden !important;
         }
 
         .navbar {
             background-color: var(--white);
             padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid var(--medium-gray);
         }
 
         .navbar-content {
@@ -100,11 +96,11 @@
         }
 
         .main-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            flex: 1;
-        }
+    margin: 2rem 0;
+    padding: 0;
+    flex: 1;
+}
+
 
         /* Override for character page */
         .character-page .main-content {
@@ -352,63 +348,9 @@
                 opacity: 0;
             }
         }
-
-        /* Loading Animation Styles */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #fff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            opacity: 1;
-            transition: opacity 0.5s ease-out;
-        }
-
-        .loading-screen.fade-out {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .loading-text {
-            color: #333;
-            font-size: 3rem;
-            font-weight: bold;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        .loading-text.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .loading-line {
-            width: 0;
-            height: 3px;
-            background-color: #333;
-            margin-top: 20px;
-            transition: width 1.5s ease;
-        }
-
-        .loading-line.visible {
-            width: 200px;
-        }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-text" id="loadingText">Soul Guardian Project</div>
-        <div class="loading-line" id="loadingLine"></div>
-    </div>
-
     <div class="ethereal-orb orb-1"></div>
     <div class="ethereal-orb orb-2"></div>
     <div class="ethereal-orb orb-3"></div>
@@ -478,41 +420,6 @@
                     section.appendChild(sparkle);
                 }
             });
-
-            // Only show loading animation on initial page load
-            if (!sessionStorage.getItem('hasVisited')) {
-                const loadingScreen = document.getElementById('loadingScreen');
-                const loadingText = document.getElementById('loadingText');
-                const loadingLine = document.getElementById('loadingLine');
-                
-                // Show the loading screen
-                loadingScreen.style.display = 'flex';
-                
-                // Trigger animations after a short delay
-                setTimeout(() => {
-                    loadingText.classList.add('visible');
-                    
-                    // Trigger line animation after text appears
-                    setTimeout(() => {
-                        loadingLine.classList.add('visible');
-                        
-                        // Hide loading screen after animations complete
-                        setTimeout(() => {
-                            loadingScreen.classList.add('fade-out');
-                            
-                            // Remove from DOM after fade out
-                            setTimeout(() => {
-                                loadingScreen.style.display = 'none';
-                                // Set flag in sessionStorage to indicate user has visited
-                                sessionStorage.setItem('hasVisited', 'true');
-                            }, 500);
-                        }, 2000);
-                    }, 500);
-                }, 300);
-            } else {
-                // Hide loading screen if user has already visited
-                document.getElementById('loadingScreen').style.display = 'none';
-            }
         });
     </script>
 </body>

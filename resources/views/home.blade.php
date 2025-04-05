@@ -30,9 +30,11 @@
             text-align: center;
             margin: -2rem -2rem 2rem -2rem;
             padding: 2rem;
-            border-radius: 0 0 20px 20px;
+            border-radius: 30px 30px 30px 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             overflow: hidden;
+            margin-top: 30px;
+            
         }
 
         .hero::before {
@@ -135,6 +137,7 @@
             height: 200px;
             object-fit: cover;
             transition: transform 0.5s ease;
+            margin-top: 10px;
         }
 
         .featured-card:hover .featured-image {
